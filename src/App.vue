@@ -2,12 +2,6 @@
   <router-view/>
 </template>
 
-<script>
-export default {
-  name: 'App',
-}
-</script>
-
 <style>
 body {
   background: #EFE3C5;
@@ -16,3 +10,9 @@ body {
 
 @import'~bootstrap/dist/css/bootstrap.css';
 </style>
+
+<script>
+export default {
+  name: 'App',
+}
+</script>
