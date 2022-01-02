@@ -8,7 +8,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: '三葉餐廳 ｜ 2022年 過年訂單查詢系統'
+    }
   },
   {
     path: '/about',
@@ -22,6 +25,14 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  
+  next();
 })
 
 export default router
