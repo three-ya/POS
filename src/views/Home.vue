@@ -10,6 +10,7 @@
           <div class="input-group mb-3">
             <input
               type="tel"
+              :readonly="searchKeyDisable"
               pattern="\d*"
               inputmode="numeric"
               class="form-control"
@@ -178,6 +179,7 @@ export default {
       //0:init, 1:wait, 2:done, 3:null
       isSearching: 0,
       searchKey: "",
+      searchKeyDisable: false,
       rows: {
         here: [],
         togo: []
@@ -206,6 +208,7 @@ export default {
       if (this.searchKey.length < 6) {
         alert("電話要完整喔！");
       } else if (this.isSearching !== 1) {
+        this.searchKeyDisable = true;
         this.isLoading = 1;
         this.isSearching = 1;
         //empty
@@ -243,6 +246,7 @@ export default {
           }
         }
 
+        this.searchKeyDisable = false;
         this.isLoading = 0;
         this.isSearching = 2;
 
