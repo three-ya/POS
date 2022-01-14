@@ -20,6 +20,7 @@
               v-model="searchKey"
               @keydown.enter.prevent="doSearch"
               required
+              ref="cellphone"
             />
             <button v-if="isLoading==0" @click="doSearch" class="btn btn-dark btn-lg" type="button">送出</button>
             <button v-else class="btn btn-dark btn-lg" type="button" disabled>
@@ -76,20 +77,64 @@
                             item['石斑'] || item['干貝'] || item['鮑魚'] || item['雞米糕'] || item['鰻米糕'] ||
                             item['紅燒蹄'] || item['佛跳牆'] || item['燉雞'] || item['蛋糕']">
                             【單點】
-                            <ul>
-                              <li v-if="item['五福']">五福臨門冷拼盤 X {{ item['五福'] }} 份</li>
-                              <li v-if="item['海鮮羹']">鴻運發財海鮮羹 X {{ item['海鮮羹'] }} 份</li>
-                              <li v-if="item['海大蝦']">蒜味白灼海大蝦 X {{ item['海大蝦'] }} 份</li>
-                              <li v-if="item['小龍蝦']">沙律小龍蝦沙拉 X {{ item['小龍蝦'] }} 份</li>
-                              <li v-if="item['石斑']">清蒸魚露海石斑 X {{ item['石斑'] }} 份</li>
-                              <li v-if="item['干貝']">田園彩椒燴干貝 X {{ item['干貝'] }} 份</li>
-                              <li v-if="item['鮑魚']">菇菇蜜鮑魚 X {{ item['鮑魚'] }} 份</li>
-                              <li v-if="item['雞米糕']">麻油雞米糕雙拼 X {{ item['雞米糕'] }} 份</li>
-                              <li v-if="item['鰻米糕']">蒲燒鰻魚米糕雙拼 X {{ item['鰻米糕'] }} 份</li>
-                              <li v-if="item['紅燒蹄']">富貴滿堂紅燒蹄 X {{ item['紅燒蹄'] }} 份</li>
-                              <li v-if="item['佛跳牆']">福滿乾坤佛跳牆 X {{ item['佛跳牆'] }} 份</li>
-                              <li v-if="item['燉雞']">排翅鮑貝燉全雞 X {{ item['燉雞'] }} 份</li>
-                              <li v-if="item['蛋糕']">綜合檸檬蛋糕 X {{ item['蛋糕'] }} 份</li>
+                            <ul class="order-list">
+                              <li v-if="item['五福']">
+                                <span class="title">五福臨門冷拼盤 X {{ item['五福'] }} 份</span>
+                                <span class="price">${{ 680*item['五福'] }}</span>
+                              </li>
+                              <li v-if="item['海鮮羹']">
+                                <span class="title">鴻運發財海鮮羹 X {{ item['海鮮羹'] }} 份</span>
+                                <span class="price">${{ 420*item['海鮮羹'] }}</span>
+                              </li>
+                              <li v-if="item['海大蝦']">
+                                <span class="title">蒜味白灼海大蝦 X {{ item['海大蝦'] }} 份</span>
+                                <span class="price">${{ 900*item['海大蝦'] }}</span>
+                              </li>
+                              <li v-if="item['小龍蝦']">
+                                <span class="title">沙律小龍蝦沙拉 X {{ item['小龍蝦'] }} 份</span>
+                                <span class="price">${{ 1400*item['小龍蝦'] }}</span>
+                              </li>
+                              <li v-if="item['石斑']">
+                                <span class="title">清蒸魚露海石斑 X {{ item['石斑'] }} 份</span>
+                                <span class="price">${{ 680*item['石斑'] }}</span>
+                              </li>
+                              <li v-if="item['干貝']">
+                                <span class="title">田園彩椒燴干貝 X {{ item['干貝'] }} 份</span>
+                                <span class="price">${{ 580*item['干貝'] }}</span>
+                              </li>
+                              <li v-if="item['鮑魚']">
+                                <span class="title">菇菇蜜鮑魚 X {{ item['鮑魚'] }} 份</span>
+                                <span class="price">${{ 850*item['鮑魚'] }}</span>
+                              </li>
+                              <li v-if="item['雞米糕']">
+                                <span class="title">麻油雞米糕雙拼 X {{ item['雞米糕'] }} 份</span>
+                                <span class="price">${{ 480*item['雞米糕'] }}</span>
+                              </li>
+                              <li v-if="item['鰻米糕']">
+                                <span class="title">蒲燒鰻魚米糕雙拼 X {{ item['鰻米糕'] }} 份</span>
+                                <span class="price">${{ 600*item['鰻米糕'] }}</span>
+                              </li>
+                              <li v-if="item['紅燒蹄']">
+                                <span class="title">富貴滿堂紅燒蹄 X {{ item['紅燒蹄'] }} 份</span>
+                                <span class="price">${{ 420*item['紅燒蹄'] }}</span>
+                              </li>
+                              
+                              <li v-if="item['肋排']">
+                                <span class="title">照燒豬肋排 X {{ item['肋排'] }} 份</span>
+                                <span class="price">${{ 600*item['肋排'] }}</span>
+                              </li>
+                              <li v-if="item['佛跳牆']">
+                                <span class="title">福滿乾坤佛跳牆 X {{ item['佛跳牆'] }} 份</span>
+                                <span class="price">${{ 480*item['佛跳牆'] }}</span>
+                              </li>
+                              <li v-if="item['燉雞']">
+                                <span class="title">排翅鮑貝燉全雞 X {{ item['燉雞'] }} 份</span>
+                                <span class="price">${{ 1350*item['燉雞'] }}</span>
+                              </li>
+                              <li v-if="item['蛋糕']">
+                                <span class="title">綜合檸檬蛋糕 X {{ item['蛋糕'] }} 份</span>
+                                <span class="price">${{ 300*item['蛋糕'] }}</span>
+                              </li>
                             </ul>
                           </template>
                         </div>
@@ -191,6 +236,9 @@ export default {
       },
     }
   },
+  mounted() {
+    this.$refs.cellphone.focus();
+  },
   methods: {
     //取得表單
     async get_HereSheet() {
@@ -263,5 +311,32 @@ export default {
 body {
   background: #EFE3C5;
   font-size: 18px;
+}
+
+.order-list {
+  padding-left: 0.5rem;
+}
+
+.order-list li {
+  display: flex;
+}
+
+.order-list li .title {
+  order: 1;
+}
+
+.order-list li .price {
+  order: 3;
+}
+
+.order-list li::after {
+  background-image: radial-gradient(circle, currentcolor 1px, transparent 1.5px);
+  background-position: bottom;
+  background-size: 1ex 4.5px;
+  background-repeat: space no-repeat;
+  content: "";
+  flex-grow: 1;
+  height: 1em;
+  order: 2;
 }
 </style>
