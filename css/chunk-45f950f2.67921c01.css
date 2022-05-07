@@ -1,0 +1,1 @@
+.order-list{padding-left:.5rem}.order-list li{display:flex}.order-list li .title{order:1}.order-list li .price{order:3}.order-list li:after{background-image:radial-gradient(circle,currentcolor 1px,transparent 1.5px);background-position:bottom;background-size:1ex 4.5px;background-repeat:space no-repeat;content:"";flex-grow:1;height:1em;order:2}
