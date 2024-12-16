@@ -1,6 +1,7 @@
 {
   "name": "threeya",
   "version": "0.1.0",
+  "homepage": "https://three-ya.github.io/POS/",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
